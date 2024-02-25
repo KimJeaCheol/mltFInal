@@ -1,0 +1,20 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "lib1/commons-beanutils-1.9.3.jar",
+            "lib1/commons-collections4-4.2.jar",
+            "lib1/commons-digester-2.1.jar",
+            "lib1/commons-logging-1.1.2.jar",
+            "lib1/itext-2.1.7.js6.jar",
+            "lib1/jasperreports-6.9.0.jar",
+            "lib1/jasperreports-metadata-6.6.0.jar",
+            "lib3/com.lowagie.text-2.1.7.jar",
+        ]
+    },
+    "java.dependency.packagePresentation": "hierarchical"
+}

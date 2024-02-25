@@ -1,12 +1,12 @@
 
 package mlt.db;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.sql.*;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -24,12 +24,12 @@ public class DbHandler {
         if(con==null)
         {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
-            con = DriverManager.getConnection ("jdbc:mysql://localhost:3306","mlt","mlt");
+            con = DriverManager.getConnection ("jdbc:mariadb://192.168.0.3:3307","root","password1!");
                 excAction("create database if not exists meritlist");
                 excAction("use meritlist");
         }
@@ -40,11 +40,11 @@ public class DbHandler {
         if(con==null)
         {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            con = DriverManager.getConnection ("jdbc:mysql://localhost:3306",username,password);
+            con = DriverManager.getConnection ("jdbc:mariadb://192.168.0.3:3307",username,password);
             excAction("create database if not exists meritlist");
             excAction("use meritlist");
             createAllRequiredTable();
@@ -56,7 +56,7 @@ public class DbHandler {
         if(con==null)
         {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

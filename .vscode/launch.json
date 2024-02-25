@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MainMethod",
+            "request": "launch",
+            "mainClass": "mlt.MainMethod",
+            "projectName": "mltFInal_3bd9e0ef"
+        }
+    ]
+}

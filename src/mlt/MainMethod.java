@@ -1,5 +1,7 @@
 package mlt;
 
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +11,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mlt.db.DbHandler;
 import mlt.ui.MyAlert.MyAlert;
-
-import java.sql.SQLException;
 
 public class MainMethod extends Application {
 
@@ -24,7 +24,7 @@ public class MainMethod extends Application {
       //  Parent root = FXMLLoader.load(getClass().getResource("/mlt/ui/setting/setting.fxml"));
        // primaryStage.setTitle("Teacher Setup");
         primaryStage.setTitle("User Login");
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
+        // primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         scene.getStylesheets().setAll("/mlt/ui/style/new2.css");
 

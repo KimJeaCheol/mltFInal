@@ -1,42 +1,43 @@
 package mlt.ui.login;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
+
 import animatefx.animation.FadeIn;
 import animatefx.animation.FadeOut;
-import animatefx.animation.SlideInUp;
-import animatefx.animation.SlideOutDown;
-import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
-
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import mlt.db.DbHandler;
 import mlt.ui.Dashboard.Controller;
 import mlt.ui.Dashboard.teacher.DashboardTeacherController;
 import mlt.ui.MyAlert.MyAlert;
-import mlt.ui.login.logic.BCrypt;
 import mlt.ui.login.logic.SHAExample;
 import mlt.ui.support.CloseStage;
 import mlt.ui.support.CreateStage;
 import mlt.ui.support.GetStage;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.*;
-import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
@@ -68,6 +69,9 @@ public class LoginController implements Initializable {
     private JFXButton btnteacherlogin;
 
     @FXML
+    private JFXButton close;
+
+    @FXML
     private BorderPane mainborderpane;
 
     @FXML
@@ -97,8 +101,6 @@ public class LoginController implements Initializable {
     @FXML
     private JFXPasswordField txtdbpass;
 
-
-
 //    For remote connection
 
     @FXML
@@ -112,7 +114,17 @@ public class LoginController implements Initializable {
     @FXML
     private JFXTextField txtdbconString;
 
-
+    @FXML
+    private Pane pane1;
+    
+    @FXML
+    private Pane pane2;
+    
+    @FXML
+    private Pane pane3;
+    
+    @FXML
+    private Pane pane4;
 
     private static Connection con = null;
 
@@ -323,6 +335,7 @@ public class LoginController implements Initializable {
             paneerror.toFront();
         }
 
+        sliderAnimation();
     }
 
     @FXML
@@ -423,4 +436,56 @@ public class LoginController implements Initializable {
         paneremotedbconnect.toFront();
         new FadeIn(paneremotedbconnect).play();
     }
+
+    @FXML
+    void appexit(ActionEvent event){
+        System.exit(0);
+    }
+    
+    private void sliderAnimation(){
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(3),pane4);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.play();
+    
+        fadeTransition.setOnFinished(event -> {
+            FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(3),pane3);
+            fadeTransition1.setFromValue(1);
+            fadeTransition1.setToValue(0);
+            fadeTransition1.play();
+    
+            fadeTransition1.setOnFinished(event1 -> {
+                FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(3),pane2);
+                fadeTransition2.setFromValue(1);
+                fadeTransition2.setToValue(0);
+                fadeTransition2.play();
+    
+                fadeTransition2.setOnFinished(event2 -> {
+                    FadeTransition fadeTransition0 = new FadeTransition(Duration.seconds(3),pane2);
+                    fadeTransition0.setFromValue(1);
+                    fadeTransition0.setToValue(8);
+                    fadeTransition0.play();
+                    
+                    fadeTransition0.setOnFinished(event3 -> {
+                        FadeTransition fadeTransition11 = new FadeTransition(Duration.seconds(3),pane3);
+                        fadeTransition11.setFromValue(1);
+                        fadeTransition11.setToValue(0);
+                        fadeTransition11.play();
+
+                        fadeTransition11.setOnFinished(event4 -> {
+                            FadeTransition fadeTransition22 = new FadeTransition(Duration.seconds(3),pane4);
+                            fadeTransition22.setFromValue(1);
+                            fadeTransition22.setToValue(0);
+                            fadeTransition22.play();
+
+                            fadeTransition22.setOnFinished(event5 -> {
+                                sliderAnimation();
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    }
 }
+
